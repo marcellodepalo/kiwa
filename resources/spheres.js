@@ -111,6 +111,22 @@
   /** How long the screenshots take to cross-fade. */
   const FADE_MS = 450;
 
+  /**
+   * The picked colour's name under its sphere, as `SelectedNameNodeStyle`
+   * prints it: half a radius below the edge, at 0.7 of the radius.
+   */
+  const LABEL_GAP_RATIO = 0.5;
+  const LABEL_SIZE_RATIO = 0.56;
+  const LABEL_FADE_MS = 250;
+
+  /** The settled sphere's lift: a soft shadow and a hint of a ring. */
+  const LIFT_MS = 250;
+  const LIFT_SHADOW = "rgba(0, 0, 0, 0.28)";
+  const LIFT_BLUR = 14;
+  const LIFT_OFFSET_Y = 4;
+  const LIFT_RING_GAP = 3;
+  const LIFT_RING_WIDTH = 1.5;
+
   // MARK: - State
 
   const stage = document.querySelector("[data-color-spheres]");
@@ -361,10 +377,12 @@
     if (focusedNode && focusedNode !== node) {
       focusedNode.isStatic = false;
       focusedNode.settle = null;
+      focusedNode.liftStart = null;
     }
     focusedNode = node;
-    node.isStatic = false;
-    node.didReachFocus = false;
+    // Tapped again where it rests, it keeps its place and its lift.
+    if (!node.isStatic) node.liftStart = null;
+    if (selected !== node.color) node.labelStart = now();
     select(node.color);
   }
 
@@ -416,6 +434,7 @@
       node.vx = 0;
       node.vy = 0;
       node.settle = { fromX: node.x, fromY: node.y, start: time };
+      node.liftStart = time;
       return;
     }
 
@@ -439,6 +458,7 @@
         if (node.isStatic && Math.hypot(node.x - width / 2, node.y - height / 2) > FOCUS_ARRIVAL * 2) {
           node.isStatic = false;
           node.settle = null;
+          node.liftStart = null;
         }
         if (!node.isStatic || node.settle) moveFocused(node, f, time);
         return;
@@ -540,13 +560,31 @@
     return opacity * (1 - (1 - PRESSED_OPACITY) * press);
   }
 
-  function drawSphere(x, y, r, color, opacity) {
+  function drawSphere(x, y, r, color, opacity, lift = 0) {
     if (r <= 0 || opacity <= 0) return;
     context.globalAlpha = opacity;
     context.beginPath();
     context.arc(x, y, r, 0, Math.PI * 2);
     context.fillStyle = color.hex;
-    context.fill();
+    if (lift > 0) {
+      context.save();
+      context.shadowColor = LIFT_SHADOW;
+      context.shadowBlur = LIFT_BLUR * lift;
+      context.shadowOffsetY = LIFT_OFFSET_Y * lift;
+      context.fill();
+      context.restore();
+    } else {
+      context.fill();
+    }
+    if (lift > 0) {
+      context.beginPath();
+      context.arc(x, y, r + LIFT_RING_GAP, 0, Math.PI * 2);
+      context.lineWidth = LIFT_RING_WIDTH;
+      context.strokeStyle = isPale(color)
+        ? `rgba(0, 0, 0, ${0.22 * lift})`
+        : `rgba(255, 255, 255, ${0.7 * lift})`;
+      context.stroke();
+    }
     if (isPale(color)) {
       context.lineWidth = 1;
       context.strokeStyle = "rgba(0, 0, 0, 0.16)";
@@ -569,8 +607,14 @@
     });
 
     const keyboardColor = focusedRadioColor();
+    let pickedNode = null;
     nodes.forEach((node) => {
-      drawSphere(node.x, node.y, node.r * nodeScale(node, time), node.color, nodeOpacity(node, time));
+      const isPicked = node.color === selected;
+      if (isPicked) pickedNode = node;
+      const lift = isPicked && node.isStatic && node.liftStart
+        ? easeOut(Math.min((time - node.liftStart) / LIFT_MS, 1))
+        : 0;
+      drawSphere(node.x, node.y, node.r * nodeScale(node, time), node.color, nodeOpacity(node, time), lift);
       if (node.color === keyboardColor) {
         context.globalAlpha = 1;
         context.beginPath();
@@ -582,7 +626,31 @@
         context.setLineDash([]);
       }
     });
+
+    if (pickedNode) drawLabel(pickedNode, time);
     context.globalAlpha = 1;
+  }
+
+  /** The picked colour's name under its sphere, drawn over the others. */
+  function drawLabel(node, time) {
+    const appear = node.labelStart ? Math.min((time - node.labelStart) / LABEL_FADE_MS, 1) : 1;
+    const opacity = appear * nodeOpacity(node, time);
+    if (opacity <= 0) return;
+
+    const r = node.r * nodeScale(node, time);
+    const size = Math.max(11, Math.round(node.r * LABEL_SIZE_RATIO));
+    const isOnPale = isPale(node.color);
+
+    context.save();
+    context.globalAlpha = opacity;
+    context.font = `700 ${size}px Nunito, "Helvetica Neue", Arial, sans-serif`;
+    context.textAlign = "center";
+    context.textBaseline = "top";
+    context.shadowColor = isOnPale ? "rgba(255, 255, 255, 0.9)" : "rgba(0, 0, 0, 0.45)";
+    context.shadowBlur = 4;
+    context.fillStyle = isOnPale ? "#333333" : "#FFFFFF";
+    context.fillText(node.color.name, node.x, node.y + r + node.r * LABEL_GAP_RATIO);
+    context.restore();
   }
 
   function tick(time) {
