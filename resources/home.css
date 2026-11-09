@@ -1,0 +1,1359 @@
+[data-anim-lazy-image],
+[data-anim-lazy-image] *,
+[data-anim-lazy-image]:after,
+[data-anim-lazy-image]:before,
+[data-lazy]:not([data-picture-loaded]) {
+  background-image: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+
+:root {
+  --global-card-corner-radius: 28px;
+  --global-section-background-color: rgb(255, 255, 255);
+  --global-section-background-color-alt: rgb(245, 245, 247);
+  --global-spacing-section-padding-bottom-aap: 100px;
+
+  --grid-gutter: 25px;
+  --grid-max-width: calc(1440px - var(--grid-gutter) * 2);
+  --grid-background-color: #f5f5f7;
+  --tile-padding-top: 36px;
+  --tile-padding-bottom: 40px;
+  --tile-padding-left: var(--tile-padding-bottom);
+  --tile-padding-right: var(--tile-padding-left);
+  --tile-border-radius: 30px;
+}
+
+:root {
+  --violet: #8876fe;
+  --indigo: #622aff;
+  --grape: #6e21e6;
+  --plum: #8d1287;
+  --azalea: #e71ee6;
+  --magenta: #dd04d1;
+  --tomato: #f63e54;
+  --guava: #fb4d66;
+  --tangelo: #ff3e17;
+  --coral: #f95c30;
+  --persimmon: #e94b1b;
+  --pumpkin: #e2620c;
+  --orange: #e66702;
+  --verdant: #29d246;
+  --bright-green: #00d436;
+  --new-green: #13be54;
+  --avocado: #73b439;
+  --green: #0c9d46;
+  --blue-green: #26c2ac;
+  --peacock-green: #14b1a1;
+  --sea-green: #099b9d;
+  --teal-green: #2b9ca1;
+  --aqua: #039e8f;
+  --teal: #049cb7;
+  --pool-blue: #00c2ee;
+  --azure: #027fff;
+  --sparkle-blue: #007aff;
+  --denim: #0056d2;
+  --cobalt: #5451fb;
+  --sapphire: #3d44c3;
+  --night: #23466c;
+  --ultramarine: #0d1387;
+  --sunrise: #ffe000;
+}
+
+@media only screen and (max-width: 1068px) {
+  :root {
+    --global-spacing-section-padding-bottom-aap: 100px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  :root {
+    --global-spacing-section-padding-bottom-aap: 70px;
+  }
+}
+
+.current {
+  z-index: 0 !important;
+  opacity: 1 !important;
+}
+
+.section-highlights {
+  --hlts-glry-height: 680px;
+}
+
+.section-highlights [data-component-list*="HighlightsGallery"] {
+  --hlts-anim-play-percent-in-view: 25;
+  --hlts-anim-pause-remaining-to-top: 0vh;
+  --hlts-sec-header-headline-color: var(--sk-headline-text-color);
+  --hlts-glry-caption-color: var(--sk-headline-text-color);
+  --hlts-glry-max-width: 1350px;
+  --hlts-glry-media-ele-width: 100%;
+  --hlts-glry-media-ele-height: 100%;
+  --hlts-section-bg: var(--global-section-background-color);
+  --hlts-glry-media-ele-bg: var(--global-section-background-color-alt);
+  --hlts-glry-current-viewport: large;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+  background: var(--hlts-section-bg);
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"].highlights-content {
+  --hlts-glry-height: 680px;
+  --hlts-glry-caption-width: 400px;
+  --hlts-glry-caption-top: 39px;
+  --hlts-glry-caption-left: 46px;
+  --hlts-glry-radius: var(--global-card-corner-radius);
+  --hlts-glry-figure-width: calc(100% - var(--hlts-glry-slide-gap) * 2);
+  --hlts-glry-slide-gap: 45px;
+}
+
+@media only screen and (min-width: 1441px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"].highlights-content {
+    --hlts-glry-height: 784px;
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"].highlights-content {
+    --hlts-glry-height: 628px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"].highlights-content {
+    --hlts-glry-height: 560px;
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"].highlights-content {
+    --hlts-glry-caption-width: 360px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"].highlights-content {
+    --hlts-glry-caption-width: 320px;
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"].highlights-content {
+    --hlts-glry-caption-top: 44px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"].highlights-content {
+    --hlts-glry-caption-top: 32px;
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"].highlights-content {
+    --hlts-glry-caption-left: 44px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"].highlights-content {
+    --hlts-glry-caption-left: 34px;
+    --hlts-glry-radius: 0;
+    --hlts-glry-figure-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"].highlights-content {
+    --hlts-glry-slide-gap: 0;
+  }
+}
+
+@media only screen and (min-width: 1441px) {
+  .section-highlights [data-component-list*="HighlightsGallery"] {
+    --hlts-glry-current-viewport: xlarge;
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights [data-component-list*="HighlightsGallery"] {
+    --hlts-glry-current-viewport: medium;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights [data-component-list*="HighlightsGallery"] {
+    --hlts-glry-current-viewport: small;
+  }
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery-wrapper {
+  overflow: hidden;
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery-limiter {
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+  max-width: var(--hlts-glry-max-width);
+}
+
+.section-highlights [data-component-list*="HighlightsGallery"] .media-gallery {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  height: var(--hlts-glry-height);
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .gallery-item {
+  top: 0;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  margin-top: 0;
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .caption {
+  width: var(--hlts-glry-caption-width);
+  top: var(--hlts-glry-caption-top);
+  left: calc(var(--hlts-glry-caption-left) + var(--hlts-glry-slide-gap));
+  color: var(--hlts-glry-caption-color);
+  z-index: 4;
+  position: absolute;
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .caption {
+    left: var(--hlts-glry-caption-left);
+  }
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .positioned-media-element {
+  position: absolute;
+  background: var(--hlts-glry-media-ele-bg);
+  width: var(--hlts-glry-media-ele-width);
+  height: var(--hlts-glry-media-ele-height);
+  top: calc(
+    var(--hlts-glry-media-ele-height) / -2 + 50% +
+      var(--hlts-glry-media-offset-y)
+  );
+  left: calc(
+    var(--hlts-glry-media-ele-width) / -2 + 50% +
+      var(--hlts-glry-media-offset-x)
+  );
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .positioned-media-element.static {
+  z-index: 1;
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .positioned-media-element.media {
+  z-index: 2;
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .positioned-media-element.endframe {
+  z-index: 3;
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .positioned-media-element.startframe {
+  z-index: 4;
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .positioned-media-element.hide {
+  display: none;
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .gallery-figure {
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  margin-top: 0;
+  overflow: hidden !important;
+  left: var(--hlts-glry-slide-gap);
+  width: var(--hlts-glry-figure-width);
+  border-radius: var(--hlts-glry-radius);
+  height: var(--hlts-glry-height);
+  --hlts-glry-media-offset-x: 0px;
+  --hlts-glry-media-offset-y: 0px;
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-iphone
+  .gallery-figure {
+  background: var(--global-section-background-color-alt);
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-iphone
+  .positioned-media-element.hardware {
+  background-size: 1260px 518px;
+  background-repeat: no-repeat;
+  background-image: url(assets/iphone/hardware/dynamic_island_large.png);
+  --hlts-glry-media-ele-width: 1260px;
+  --hlts-glry-media-ele-height: 518px;
+  z-index: 5;
+  background-color: unset;
+  --hlts-glry-media-offset-x: 5px;
+  --hlts-glry-media-offset-y: 0px;
+}
+
+@media (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.hardware {
+    background-image: url(assets/iphone/hardware/dynamic_island_large_2x.png);
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.hardware {
+    background-size: 932px 472px;
+    background-repeat: no-repeat;
+    background-image: url(assets/iphone/hardware/dynamic_island_medium.png);
+  }
+}
+
+@media only screen and (max-width: 1068px) and (min-resolution: 1.5dppx),
+  only screen and (max-width: 1068px) and (min-resolution: 144dpi) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.hardware {
+    background-image: url(assets/iphone/hardware/dynamic_island_medium_2x.png);
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.hardware {
+    background-size: 734px 382px;
+    background-repeat: no-repeat;
+    background-image: url(assets/iphone/hardware/dynamic_island_small.png);
+  }
+}
+
+@media only screen and (max-width: 734px) and (min-resolution: 1.5dppx),
+  only screen and (max-width: 734px) and (min-resolution: 144dpi) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.hardware {
+    background-image: url(assets/iphone/hardware/dynamic_island_small_2x.png);
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.hardware {
+    --hlts-glry-media-ele-width: 932px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.hardware {
+    --hlts-glry-media-ele-width: 734px;
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.hardware {
+    --hlts-glry-media-ele-height: 472px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.hardware {
+    --hlts-glry-media-ele-height: 382px;
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.hardware {
+    --hlts-glry-media-offset-x: 11px;
+    --hlts-glry-media-offset-y: 0px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.hardware {
+    --hlts-glry-media-offset-x: 0px;
+    --hlts-glry-media-offset-y: 0px;
+  }
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-iphone
+  .positioned-media-element.startframe {
+  background-size: 526px 488px;
+  background-repeat: no-repeat;
+  background-image: url(assets/iphone/images/highlights_dynamic_island_large.jpg);
+  --hlts-glry-media-ele-width: 526px;
+  --hlts-glry-media-ele-height: 488px;
+}
+
+@media (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.startframe {
+    background-image: url(assets/iphone/images/highlights_dynamic_island_large_2x.jpg);
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.startframe {
+    background-size: 470px 446px;
+    background-repeat: no-repeat;
+    background-image: url(assets/iphone/images/highlights_dynamic_island_medium.jpg);
+  }
+}
+
+@media only screen and (max-width: 1068px) and (min-resolution: 1.5dppx),
+  only screen and (max-width: 1068px) and (min-resolution: 144dpi) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.startframe {
+    background-image: url(assets/iphone/images/highlights_dynamic_island_medium_2x.jpg);
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.startframe {
+    background-size: 310px 366px;
+    background-repeat: no-repeat;
+    background-image: url(assets/iphone/images/highlights_dynamic_island_small.jpg);
+  }
+}
+
+@media only screen and (max-width: 734px) and (min-resolution: 1.5dppx),
+  only screen and (max-width: 734px) and (min-resolution: 144dpi) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.startframe {
+    background-image: url(assets/iphone/images/highlights_dynamic_island_small_2x.jpg);
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.startframe {
+    --hlts-glry-media-ele-width: 470px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.startframe {
+    --hlts-glry-media-ele-width: 310px;
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.startframe {
+    --hlts-glry-media-ele-height: 446px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.startframe {
+    --hlts-glry-media-ele-height: 366px;
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.endframe {
+    --hlts-glry-media-ele-width: 470px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.endframe {
+    --hlts-glry-media-ele-width: 310px;
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.endframe {
+    --hlts-glry-media-ele-height: 446px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.endframe {
+    --hlts-glry-media-ele-height: 366px;
+  }
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-iphone
+  .positioned-media-element.media {
+  --hlts-glry-media-ele-width: 526px;
+  --hlts-glry-media-ele-height: 488px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.media {
+    --hlts-glry-media-ele-width: 470px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.media {
+    --hlts-glry-media-ele-width: 310px;
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.media {
+    --hlts-glry-media-ele-height: 446px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .positioned-media-element.media {
+    --hlts-glry-media-ele-height: 366px;
+  }
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-iphone
+  .gallery-figure {
+  --hlts-glry-media-offset-x: 5px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .gallery-figure {
+    --hlts-glry-media-offset-x: 12px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-iphone
+    .gallery-figure {
+    --hlts-glry-media-offset-x: 1px;
+  }
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-iphone
+  .gallery-figure
+  .positioned-media-element {
+  top: unset;
+  bottom: 0;
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-watch
+  .gallery-figure
+  h3 {
+  font-size: 48px;
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-watch
+  .gallery-figure
+  .row {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-watch
+  .gallery-figure {
+  background: var(--global-section-background-color-alt);
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-watch
+  .gallery-figure {
+  --hlts-glry-media-offset-x: 5px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-watch
+    .gallery-figure {
+    --hlts-glry-media-offset-x: 12px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-watch
+    .gallery-figure {
+    --hlts-glry-media-offset-x: 1px;
+  }
+}
+
+@media only screen and (min-width: 1441px) {
+  .section-highlights {
+    --hlts-glry-height: 784px;
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights {
+    --hlts-glry-height: 628px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights {
+    --hlts-glry-height: 560px;
+  }
+}
+
+@media only screen and (min-width: 1441px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"].highlights-content {
+    --hlts-glry-height: 680px;
+  }
+}
+
+.section-highlights .media-gallery-wrapper {
+  padding-bottom: var(--global-spacing-section-padding-bottom-aap);
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights .media-gallery-wrapper {
+    padding-bottom: calc(
+      var(--global-spacing-section-padding-bottom-aap) + 24px
+    );
+  }
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-mac
+  .caption {
+  color: rgb(245, 245, 247);
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-mac
+  .gallery-figure {
+  background: var(--global-section-background-color-alt);
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-mac
+  .positioned-media-element.mac {
+  background-size: 1260px 680px;
+  background-repeat: no-repeat;
+  background-image: url(assets/mac/images/mac_large.jpg);
+  --hlts-glry-media-ele-width: 1260px;
+  --hlts-glry-media-ele-height: 680px;
+  top: unset;
+  bottom: 0;
+  transform: scale(1.25);
+}
+
+@media (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-mac
+    .positioned-media-element.mac {
+    background-image: url(assets/mac/images/mac_large_2x.jpg);
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-mac
+    .positioned-media-element.mac {
+    background-size: 932px 628px;
+    background-repeat: no-repeat;
+    background-image: url(assets/mac/images/mac_medium.png);
+  }
+}
+
+@media only screen and (max-width: 1068px) and (min-resolution: 1.5dppx),
+  only screen and (max-width: 1068px) and (min-resolution: 144dpi) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-mac
+    .positioned-media-element.mac {
+    background-image: url(assets/mac/images/mac_medium_2x.png);
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-mac
+    .positioned-media-element.mac {
+    background-size: 734px 560px;
+    background-repeat: no-repeat;
+    background-image: url(assets/mac/images/mac_small.png);
+  }
+}
+
+@media only screen and (max-width: 734px) and (min-resolution: 1.5dppx),
+  only screen and (max-width: 734px) and (min-resolution: 144dpi) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-mac
+    .positioned-media-element.mac {
+    background-image: url(assets/mac/images/mac_small_2x.png);
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-mac
+    .positioned-media-element.mac {
+    --hlts-glry-media-ele-width: 932px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-mac
+    .positioned-media-element.mac {
+    --hlts-glry-media-ele-width: 734px;
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-mac
+    .positioned-media-element.mac {
+    --hlts-glry-media-ele-height: 628px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-mac
+    .positioned-media-element.mac {
+    --hlts-glry-media-ele-height: 560px;
+    bottom: -25px;
+  }
+}
+
+@keyframes mac-scale {
+  0% {
+    transform: scale(1.25);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-mac
+  .gallery-figure.animation-start
+  .mac {
+  animation-name: mac-scale;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0.25s;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-ipad
+  .gallery-figure {
+  background: var(--global-section-background-color-alt);
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-ipad
+  .positioned-media-element.ipad {
+  background-size: 1260px 680px;
+  background-repeat: no-repeat;
+  background-image: url(assets/ipad/images/ipad_large.jpg);
+  --hlts-glry-media-ele-width: 1260px;
+  --hlts-glry-media-ele-height: 680px;
+  top: unset;
+  bottom: 0;
+  transform: scale(1.25);
+}
+
+@media (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-ipad
+    .positioned-media-element.ipad {
+    background-image: url(assets/ipad/images/ipad_large_2x.png);
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-ipad
+    .positioned-media-element.ipad {
+    background-size: 932px 628px;
+    background-repeat: no-repeat;
+    background-image: url(assets/ipad/images/ipad_medium.png);
+  }
+}
+
+@media only screen and (max-width: 1068px) and (min-resolution: 1.5dppx),
+  only screen and (max-width: 1068px) and (min-resolution: 144dpi) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-ipad
+    .positioned-media-element.ipad {
+    background-image: url(assets/ipad/images/ipad_medium_2x.png);
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-ipad
+    .positioned-media-element.ipad {
+    background-size: 734px 560px;
+    background-repeat: no-repeat;
+    background-image: url(assets/ipad/images/ipad_small.png);
+  }
+}
+
+@media only screen and (max-width: 734px) and (min-resolution: 1.5dppx),
+  only screen and (max-width: 734px) and (min-resolution: 144dpi) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-ipad
+    .positioned-media-element.ipad {
+    background-image: url(assets/ipad/images/ipad_small_2x.png);
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-ipad
+    .positioned-media-element.ipad {
+    --hlts-glry-media-ele-width: 932px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-ipad
+    .positioned-media-element.ipad {
+    --hlts-glry-media-ele-width: 734px;
+  }
+}
+
+@media only screen and (max-width: 1068px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-ipad
+    .positioned-media-element.ipad {
+    --hlts-glry-media-ele-height: 628px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .section-highlights
+    [data-component-list*="HighlightsGallery"]
+    .media-gallery
+    .item-container
+    .media-gallery-item-ipad
+    .positioned-media-element.ipad {
+    --hlts-glry-media-ele-height: 560px;
+    bottom: -25px;
+  }
+}
+
+@keyframes ipad-scale {
+  0% {
+    transform: scale(1.25);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-ipad
+  .gallery-figure.animation-start
+  .ipad {
+  animation-name: ipad-scale;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0.25s;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+}
+
+[data-apps-hero="mac"] [data-ac-gallery-item="mac"],
+[data-apps-hero="iphone"] [data-ac-gallery-item="iphone"],
+[data-apps-hero="ipad"] [data-ac-gallery-item="ipad"],
+[data-apps-hero="watch"] [data-ac-gallery-item="watch"] {
+  z-index: 0 !important;
+  opacity: 1 !important;
+}
+
+.grid {
+  margin-left: auto;
+  margin-right: auto;
+  grid-column-gap: var(--grid-gutter);
+  grid-row-gap: var(--grid-gutter);
+  padding-left: var(--grid-gutter);
+  padding-right: var(--grid-gutter);
+  padding-top: 0;
+  padding-bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+.grid .grid {
+  height: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+.grid-item {
+  position: relative;
+  box-sizing: border-box;
+}
+.large-span-6 {
+  grid-column: span 6;
+}
+.large-span-12 {
+  grid-column: span 12;
+}
+@media only screen and (max-width: 1068px) {
+  .medium-span-6 {
+    grid-column: span 6;
+  }
+}
+@media only screen and (max-width: 734px) {
+  .small-span-12 {
+    grid-column: span 12;
+  }
+}
+.tile {
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #fff;
+}
+.tile-content {
+  padding: 0;
+}
+.tile-button-wrapper:focus {
+  outline: none;
+}
+.tile-button-wrapper:focus .tile-button {
+  box-shadow: 0 0 0 3px white, 0 0 0 5px #0071e3;
+  outline: none;
+}
+.tile-button {
+  background-color: rgba(210, 210, 215, 0.64);
+  color: rgba(0, 0, 0, 0.56);
+}
+.tile-button:hover {
+  background-color: rgba(223, 223, 227, 0.6976);
+}
+.tile-button:active {
+  background-color: rgba(193, 193, 198, 0.6544);
+}
+.tile-button:hover {
+  color: rgba(0, 0, 0, 0.72);
+}
+.tile-button-wrapper {
+  width: 44px;
+  height: 44px;
+  bottom: 16px;
+  right: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+@media only screen and (max-width: 1068px) {
+  .tile-button-wrapper {
+    bottom: 13px;
+    right: 13px;
+  }
+}
+.tile-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: background-color 100ms linear;
+}
+.tile-rounded {
+  border-radius: 18px;
+}
+.typography-section-intro-headline {
+  font-size: 56px;
+  line-height: 1.0714285714;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+@media only screen and (max-width: 1068px) {
+  .typography-section-intro-headline {
+    font-size: 40px;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: 0em;
+  }
+}
+@media only screen and (max-width: 734px) {
+  .typography-section-intro-headline {
+    font-size: 32px;
+    line-height: 1.125;
+    font-weight: 600;
+    letter-spacing: 0.004em;
+  }
+}
+.typography-subsection-headline {
+  font-size: 21px;
+  line-height: 1.1904761905;
+  font-weight: 600;
+  letter-spacing: 0.011em;
+}
+@media only screen and (max-width: 1068px) {
+  .typography-subsection-headline {
+    font-size: 19px;
+    line-height: 1.2105263158;
+    font-weight: 600;
+    letter-spacing: 0.012em;
+  }
+}
+.typography-subsection-copy {
+  font-size: 19px;
+  font-family: var(--heading-font);
+  line-height: 1.4211026316;
+  font-weight: 600;
+  letter-spacing: 0.012em;
+}
+@media only screen and (max-width: 1068px) {
+  .typography-subsection-copy {
+    font-size: 17px;
+    font-family: var(--heading-font);
+    line-height: 1.4705882353;
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    font-family: var(--heading-font);
+  }
+}
+@media only screen and (min-width: 1250px) {
+  .typography-blockquote-copy {
+    font-size: 56px;
+    font-family: var(--heading-font);
+    line-height: 1.0714285714;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+}
+@media only screen and (min-width: 1069px) and (max-width: 1249px) {
+  .typography-blockquote-copy {
+    font-size: 48px;
+    font-family: var(--heading-font);
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: -0.003em;
+  }
+}
+@media only screen and (max-width: 1068px) {
+  .typography-blockquote-copy {
+    font-size: 40px;
+    font-family: var(--heading-font);
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: 0em;
+  }
+}
+.section-denim {
+  --section-color: var(--denim);
+}

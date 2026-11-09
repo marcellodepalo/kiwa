@@ -1,0 +1,149 @@
+
+.faq {
+	overflow: hidden;
+	margin-top: 7em;
+}
+
+@media only screen and (min-width: 32em) {
+	.faq {
+		margin-top: 13em;
+	}
+}
+
+.faq article.wrapper {
+	max-width: 50em;
+}
+
+/* Main Header */
+
+.faq header {
+	text-align: center;
+	padding-bottom: 6em;
+}
+
+.faq header h1 {
+	text-align: center;
+	max-width: 14em;
+	display: inline-block;
+}
+
+@media only screen and (max-width: 46em) {
+	.faq header h1 {
+		width: 100%;
+	}
+}
+
+.faq header .back_button {
+	background-color: #FBEDED;
+	color: var(--accent-color);
+	display: inline-block;
+	padding: 0.7em 1.5em;
+	border-radius: 14px;
+	margin-top: 0.3em;
+}
+
+.faq header .back_button svg {
+	position: relative;
+	top: 0.2em;
+}
+
+.faq article {
+	margin-bottom: 10em;
+}
+
+/* FAQ Paragraphs */
+
+.faq article p {
+	margin-bottom: 1.5em;
+}
+
+.faq article hr {
+	border: none;
+	border-bottom: 1px solid var(--background-tertiary-color);
+	margin: 1.5em 0;
+}
+
+
+/* FAQ Headers */
+
+.faq article :is(p, ul, ol, nav)+ :is(h1, h2, h3, h4, h5, h6) {
+	margin-top: 1.5em;
+}
+
+.faq :is(h1, h2, h3, h4, h5, h6) {
+	margin-bottom: 0.3em;
+}
+
+
+.faq h2 {
+	font-size: 2em;
+}
+
+.faq h3 {
+	font-size: 1.6em;
+}
+
+.faq h4 {
+	font-size: 1.4em;
+}
+
+/* Images */
+
+.faq article img {
+	max-width: 100%;
+}
+
+/* Lists */
+
+.faq article li {
+	display: list-item;
+	line-height: 1.8em;
+}
+
+.faq article ul {
+	list-style-type: disc;
+	margin-left: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+.faq article li ul {
+	list-style: circle;
+}
+
+.faq article li li ul {
+	list-style: disc;
+}
+
+.faq article li li li ul {
+	list-style: circle;
+}
+
+.faq article li li li li ul {
+	list-style: disc;
+}
+
+.faq article li li li li li ul {
+	list-style: circle;
+}
+
+.faq article li li li li li li ul {
+	list-style: disc;
+	/* should be black diamond, but that is not supported */
+}
+
+.faq article li li li li li li li ul {
+	list-style: circle;
+	/* should be white diamond, but that is not supported */
+}
+
+.faq article li::marker {
+	color: var(--accent-color);
+}
+
+.faq code {
+	background-color: var(--background-secondary-color);
+	padding: 0.3em 0.4em;
+	border-radius: 0.3em;
+	font-family: var(--code-font);
+	font-size: 0.9em;
+}

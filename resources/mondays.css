@@ -1,0 +1,236 @@
+/*
+ * Mondays overrides on top of the briicks stylesheets (screen.css, home.css).
+ * Adds the iPhone Duo toggle and gallery item, and the "Coming soon" state
+ * for Mac and iPad.
+ */
+
+:root {
+  --mondays-iphone-accent: #F0A93B;
+  --mondays-duo-accent: #5B8DEF;
+  --mondays-soon-accent: #B9B9BE;
+  --mondays-screen-fallback: #1F2A4A;
+
+  --duo-width: 1000px;
+  --duo-top: 130px;
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+/* MARK: - Toggles */
+
+/* Mac and iPad are hidden for now; delete this rule to offer them again
+   (their "Coming soon" gallery and button are still in place). */
+[data-apps-toggle="mac"],
+[data-apps-toggle="ipad"] {
+  display: none;
+}
+
+[data-apps-hero="iphone"] h1 u,
+[data-apps-hero="duo"] h1 u,
+[data-apps-hero="mac"] h1 u,
+[data-apps-hero="ipad"] h1 u {
+  text-underline-offset: 0.3rem;
+}
+
+[data-apps-hero="iphone"] h1 u { text-decoration-color: var(--mondays-iphone-accent); }
+[data-apps-hero="duo"] h1 u { text-decoration-color: var(--mondays-duo-accent); }
+[data-apps-hero="mac"] h1 u,
+[data-apps-hero="ipad"] h1 u { text-decoration-color: var(--mondays-soon-accent); }
+
+[data-apps-hero="duo"] [data-apps-toggle="duo"] {
+  opacity: 1;
+}
+
+.apps-toggle:focus-visible {
+  outline: 2px solid var(--mondays-duo-accent);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+@media only screen and (max-width: 734px) {
+  .apps-toggles-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .apps-toggle {
+    font-size: 1.1em;
+    padding: 0.6em;
+  }
+}
+
+/* MARK: - Store buttons */
+
+.apps-buttons-container {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.apps-coming-soon {
+  display: none;
+  padding: 0.75em 1.5em;
+  border-radius: 999px;
+  border: 1.5px solid var(--stroke-color);
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 1.1em;
+  color: var(--text-secondary-color);
+}
+
+[data-apps-hero="mac"] .apps-app-store-button,
+[data-apps-hero="ipad"] .apps-app-store-button {
+  display: none;
+}
+
+[data-apps-hero="mac"] .apps-coming-soon,
+[data-apps-hero="ipad"] .apps-coming-soon {
+  display: inline-block;
+}
+
+/* MARK: - Gallery visibility (home.css knows mac, iphone, ipad, watch only) */
+
+[data-apps-hero="duo"] [data-ac-gallery-item="duo"] {
+  z-index: 0 !important;
+  opacity: 1 !important;
+}
+
+/* MARK: - iPhone screen */
+
+/* Same slot as briicks (526x488 behind the frame); only the image changes. */
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-iphone
+  .positioned-media-element.startframe {
+  background: url(assets/iphone/images/mondays_iphone.jpg) center top / cover no-repeat,
+    var(--mondays-screen-fallback);
+}
+
+/* MARK: - iPhone Duo */
+
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .media-gallery-item-duo
+  .gallery-figure,
+.section-highlights
+  [data-component-list*="HighlightsGallery"]
+  .media-gallery
+  .item-container
+  .gallery-figure-soon {
+  background: var(--global-section-background-color-alt);
+}
+
+/*
+ * Open Duo: the frame image (duo_large, 1000x428 at 1x) sits on top with a
+ * transparent screen; the screenshot sits behind it in that hole. Below the
+ * image the frame continues with duo_edge (its bottom row, repeated), so the
+ * device can be as tall as the gallery needs and is cut at the figure's edge
+ * like the iPhone. Hole at 1x: x 64.5–935, y from 36.5; the screenshot bleeds
+ * ~1.5px under the bezel so no seam shows.
+ */
+.duo-device {
+  --duo-frame-height: calc(var(--duo-width) * 0.428);
+  position: absolute;
+  left: 50%;
+  top: var(--duo-top);
+  bottom: 0;
+  width: var(--duo-width);
+  transform: translateX(-50%);
+}
+
+.duo-device::before,
+.duo-device::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.duo-device::after {
+  top: 0;
+  height: var(--duo-frame-height);
+  background: url(assets/duo/hardware/duo_large.png) center / 100% 100% no-repeat;
+}
+
+@media (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  .duo-device::after {
+    background-image: url(assets/duo/hardware/duo_large_2x.png);
+  }
+}
+
+.duo-device::before {
+  top: calc(var(--duo-frame-height) - 1px);
+  bottom: 0;
+  background: url(assets/duo/hardware/duo_edge.png) left top / 100% 2px repeat-y;
+}
+
+.duo-screen {
+  position: absolute;
+  z-index: 1;
+  left: 6.3%;
+  right: 6.3%;
+  top: calc(var(--duo-width) * 0.0351);
+  bottom: 0;
+  overflow: hidden;
+  border-radius: calc(var(--duo-width) * 0.05) calc(var(--duo-width) * 0.05) 0 0;
+  background: url(assets/duo/images/mondays_duo.jpg) center top / 100% auto no-repeat,
+    var(--mondays-screen-fallback);
+}
+
+@media only screen and (max-width: 1068px) {
+  :root {
+    --duo-width: 780px;
+    --duo-top: 110px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  :root {
+    --duo-width: 96vw;
+    --duo-top: 250px;
+  }
+}
+
+/* MARK: - Coming soon (Mac, iPad) */
+
+.gallery-figure-soon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.soon-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--heading-font);
+  color: var(--text-color);
+  text-align: center;
+}
+
+.soon-card img {
+  width: 96px;
+  height: 96px;
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  margin-bottom: 0.6em;
+}
+
+.soon-title {
+  font-size: 2em;
+  font-weight: 700;
+}
+
+.soon-subtitle {
+  font-size: 1.2em;
+  color: var(--text-secondary-color);
+}
