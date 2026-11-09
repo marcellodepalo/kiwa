@@ -5,10 +5,10 @@
  */
 
 :root {
-  --mondays-iphone-accent: #F0A93B;
-  --mondays-duo-accent: #5B8DEF;
+  --mondays-iphone-accent: #F7BC23;
+  --mondays-duo-accent: #F7BC23;
   --mondays-soon-accent: #B9B9BE;
-  --mondays-screen-fallback: #1F2A4A;
+  --mondays-screen-fallback: #F7BC23;
 
   --duo-width: 1000px;
   --duo-top: 130px;
@@ -34,8 +34,8 @@ body {
   text-underline-offset: 0.3rem;
 }
 
-[data-apps-hero="iphone"] h1 u { text-decoration-color: var(--mondays-iphone-accent); }
-[data-apps-hero="duo"] h1 u { text-decoration-color: var(--mondays-duo-accent); }
+[data-apps-hero="iphone"] h1 u { text-decoration-color: var(--kiwa-theme-underline, var(--mondays-iphone-accent)); }
+[data-apps-hero="duo"] h1 u { text-decoration-color: var(--kiwa-theme-underline, var(--mondays-duo-accent)); }
 [data-apps-hero="mac"] h1 u,
 [data-apps-hero="ipad"] h1 u { text-decoration-color: var(--mondays-soon-accent); }
 
@@ -58,6 +58,90 @@ body {
   .apps-toggle {
     font-size: 1.1em;
     padding: 0.6em;
+  }
+}
+
+/* MARK: - Colour spheres (resources/spheres.js) */
+
+.color-spheres {
+  width: min(560px, 100%);
+  margin: -1.5em auto 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* The stage sets the size; the canvas fills it and never feeds back into it. */
+.color-spheres-stage {
+  position: relative;
+  width: 100%;
+  height: 230px;
+}
+
+.color-spheres-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+}
+
+.color-spheres-name {
+  margin: 0.4em 0 0.9em;
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 1.1em;
+  color: var(--text-color);
+  min-height: 1.3em;
+}
+
+.color-families {
+  display: inline-flex;
+  gap: 0.25em;
+  padding: 0.25em;
+  border-radius: 999px;
+  background: var(--global-section-background-color-alt);
+}
+
+.color-family {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.5em 1.2em;
+  background: transparent;
+  font: inherit;
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 0.95em;
+  color: var(--text-secondary-color);
+  cursor: pointer;
+}
+
+.color-family[aria-pressed="true"] {
+  background: var(--background-color);
+  color: var(--text-color);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.color-family:focus-visible {
+  outline: 2px solid var(--kiwa-theme-underline, var(--text-color));
+  outline-offset: 2px;
+}
+
+/* The off-screen radios, focused from the keyboard: say where focus is. */
+.color-spheres:has(input:focus-visible) .color-spheres-stage {
+  outline: 2px dashed var(--stroke-color);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+@media only screen and (max-width: 734px) {
+  .color-spheres {
+    margin-top: -1em;
+  }
+
+  .color-spheres-stage {
+    height: 200px;
   }
 }
 
@@ -106,7 +190,7 @@ body {
   .item-container
   .media-gallery-item-iphone
   .positioned-media-element.startframe {
-  background: url(assets/iphone/images/mondays_iphone.jpg) center top / cover no-repeat,
+  background: url(assets/iphone/colors/lively-sunburst-gold.jpg) center top / cover no-repeat,
     var(--mondays-screen-fallback);
 }
 
@@ -181,7 +265,7 @@ body {
   bottom: 0;
   overflow: hidden;
   border-radius: calc(var(--duo-width) * 0.05) calc(var(--duo-width) * 0.05) 0 0;
-  background: url(assets/duo/images/mondays_duo.jpg) center top / 100% auto no-repeat,
+  background: url(assets/duo/colors/lively-sunburst-gold.jpg) center top / 100% auto no-repeat,
     var(--mondays-screen-fallback);
 }
 

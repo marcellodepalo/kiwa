@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="./resources/screen.css" media="all">
 		<link rel="stylesheet" href="./resources/home.css" media="all">
 		<link rel="stylesheet" href="./resources/overview.built.css" type="text/css" />
-		<link rel="stylesheet" href="./resources/mondays.css" type="text/css" />
+		<link rel="stylesheet" href="./resources/mondays.css?v=2" type="text/css" />
 
 		<title>Kiwa</title>
 		<link rel="icon" type="image/png" href="./resources/logo.png">
@@ -29,7 +29,7 @@
     <nav class="navigation" data-navigation-bar="">
       <div class="navigation-container wrapper">
           <a href="index.html" class="navigation-logo-container">
-              <img class="navigation-logo" src="./resources/logo.png" alt="">
+              <img class="navigation-logo" src="./resources/logo.png" alt="" data-theme-logo>
               <span><b>Kiwa</b></span>
           </a>
       </div>
@@ -66,6 +66,17 @@
               </span>
               <span>iPad</span>
             </div>
+          </div>
+          <!-- The app's colour spheres: see resources/spheres.js -->
+          <div class="color-spheres" data-color-spheres>
+            <div class="color-spheres-stage">
+              <canvas class="color-spheres-canvas" aria-hidden="true"></canvas>
+            </div>
+            <fieldset class="visuallyhidden" data-color-radios>
+              <legend>Theme colour</legend>
+            </fieldset>
+            <p class="color-spheres-name" data-color-name aria-live="polite">Sunburst Gold</p>
+            <div class="color-families" data-color-families role="group" aria-label="Colour family"></div>
           </div>
           <div class="apps-buttons-container">
             <!-- TODO: replace # with the Kiwa App Store link once the app is live -->
@@ -123,6 +134,7 @@
           </div>
         </div>
         <script src="./resources/apps-hero.js"></script>
+        <script src="./resources/spheres.js?v=2"></script>
       </div>
     </section>
   </main>
