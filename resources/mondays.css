@@ -63,19 +63,20 @@ body {
 
 /* MARK: - Colour spheres (resources/spheres.js) */
 
-.color-spheres {
-  width: min(560px, 100%);
-  margin: -1.5em auto 1.5em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* The stage sets the size; the canvas fills it and never feeds back into it. */
-.color-spheres-stage {
-  position: relative;
-  width: 100%;
-  height: 230px;
+/*
+ * Laid over the whole gallery, as the app lays its spheres over its screen:
+ * the same box as the gallery's figure, above the screenshots.
+ */
+.section-highlights [data-component-list*="HighlightsGallery"] .color-spheres-stage {
+  position: absolute;
+  /* Over the screenshots, under the fixed navigation (z-index 3). */
+  z-index: 2;
+  top: 0;
+  left: var(--hlts-glry-slide-gap);
+  width: var(--hlts-glry-figure-width);
+  height: var(--hlts-glry-height);
+  border-radius: var(--hlts-glry-radius);
+  overflow: hidden;
 }
 
 .color-spheres-canvas {
@@ -86,63 +87,42 @@ body {
   touch-action: pan-y;
 }
 
-.color-spheres-name {
-  margin: 0.4em 0 0.9em;
-  font-family: var(--heading-font);
-  font-weight: 700;
-  font-size: 1.1em;
-  color: var(--text-color);
-  min-height: 1.3em;
-}
-
+/* The families: two words, the one on show underlined in the colour picked. */
 .color-families {
-  display: inline-flex;
-  gap: 0.25em;
-  padding: 0.25em;
-  border-radius: 999px;
-  background: var(--global-section-background-color-alt);
+  display: flex;
+  justify-content: center;
+  gap: 1.75em;
+  margin-top: 1.25em;
 }
 
 .color-family {
   appearance: none;
   border: 0;
-  border-radius: 999px;
-  padding: 0.5em 1.2em;
-  background: transparent;
+  padding: 0.3em 0;
+  background: none;
   font: inherit;
-  font-family: var(--heading-font);
-  font-weight: 700;
-  font-size: 0.95em;
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--text-secondary-color);
   cursor: pointer;
+  border-bottom: 1px solid transparent;
 }
 
 .color-family[aria-pressed="true"] {
-  background: var(--background-color);
   color: var(--text-color);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  border-bottom-color: var(--kiwa-theme-underline, var(--text-color));
 }
 
 .color-family:focus-visible {
-  outline: 2px solid var(--kiwa-theme-underline, var(--text-color));
-  outline-offset: 2px;
+  outline: 1px solid var(--text-color);
+  outline-offset: 4px;
 }
 
 /* The off-screen radios, focused from the keyboard: say where focus is. */
-.color-spheres:has(input:focus-visible) .color-spheres-stage {
+.highlights-content:has(input:focus-visible) .color-spheres-stage {
   outline: 2px dashed var(--stroke-color);
-  outline-offset: 4px;
-  border-radius: 12px;
-}
-
-@media only screen and (max-width: 734px) {
-  .color-spheres {
-    margin-top: -1em;
-  }
-
-  .color-spheres-stage {
-    height: 200px;
-  }
+  outline-offset: -6px;
 }
 
 /* MARK: - Store buttons */

@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="./resources/screen.css" media="all">
 		<link rel="stylesheet" href="./resources/home.css" media="all">
 		<link rel="stylesheet" href="./resources/overview.built.css" type="text/css" />
-		<link rel="stylesheet" href="./resources/mondays.css?v=2" type="text/css" />
+		<link rel="stylesheet" href="./resources/mondays.css?v=4" type="text/css" />
 
 		<title>Kiwa</title>
 		<link rel="icon" type="image/png" href="./resources/logo.png">
@@ -67,20 +67,8 @@
               <span>iPad</span>
             </div>
           </div>
-          <!-- The app's colour spheres: see resources/spheres.js -->
-          <div class="color-spheres" data-color-spheres>
-            <div class="color-spheres-stage">
-              <canvas class="color-spheres-canvas" aria-hidden="true"></canvas>
-            </div>
-            <fieldset class="visuallyhidden" data-color-radios>
-              <legend>Theme colour</legend>
-            </fieldset>
-            <p class="color-spheres-name" data-color-name aria-live="polite">Sunburst Gold</p>
-            <div class="color-families" data-color-families role="group" aria-label="Colour family"></div>
-          </div>
           <div class="apps-buttons-container">
-            <!-- TODO: replace # with the Kiwa App Store link once the app is live -->
-            <a class="apps-app-store-button" href="#"><img src="./resources/download app store.svg" alt="Download on the App Store"></a>
+            <a class="apps-app-store-button" href="https://apps.apple.com/app/kiwa-calendar-planner/id6812842564"><img src="./resources/download app store.svg" alt="Download on the App Store"></a>
             <span class="apps-coming-soon">Coming soon</span>
           </div>
         </div>
@@ -130,11 +118,20 @@
 
                 </div>
               </div>
+              <!-- The app's colour spheres over the whole gallery: see resources/spheres.js -->
+              <div class="color-spheres-stage" data-color-spheres>
+                <canvas class="color-spheres-canvas" aria-hidden="true"></canvas>
+              </div>
             </div>
+            <div class="color-families" data-color-families role="group" aria-label="Colour family"></div>
           </div>
+          <fieldset class="visuallyhidden" data-color-radios>
+            <legend>Theme colour</legend>
+          </fieldset>
+          <p class="visuallyhidden" data-color-name aria-live="polite">Sunburst Gold</p>
         </div>
         <script src="./resources/apps-hero.js"></script>
-        <script src="./resources/spheres.js?v=2"></script>
+        <script src="./resources/spheres.js?v=4"></script>
       </div>
     </section>
   </main>
@@ -143,8 +140,8 @@
     <div class="footer-links">
         <ul>
             <li>Kiwa</li>
-            <li><a href="#">Kiwa for iPhone</a></li>
-            <li><a href="#">Kiwa for Duo</a></li>
+            <li><a href="https://apps.apple.com/app/kiwa-calendar-planner/id6812842564">Kiwa for iPhone</a></li>
+            <li><a href="https://apps.apple.com/app/kiwa-calendar-planner/id6812842564">Kiwa for Duo</a></li>
         </ul>
         <ul>
             <li>Support</li>
