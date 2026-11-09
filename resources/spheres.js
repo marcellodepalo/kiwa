@@ -124,8 +124,15 @@
   const LIFT_SHADOW = "rgba(0, 0, 0, 0.28)";
   const LIFT_BLUR = 14;
   const LIFT_OFFSET_Y = 4;
-  const LIFT_RING_GAP = 3;
-  const LIFT_RING_WIDTH = 1.5;
+  const LIFT_RING_WIDTH = 2;
+  /** How much darker than the colour the ring is: mixed with this much black. */
+  const LIFT_RING_SHADE = 0.22;
+
+  /**
+   * `FocusSettings.location`: where the picked sphere comes to rest — the
+   * middle, 30 points lower.
+   */
+  const FOCUS_OFFSET_Y = 30;
 
   // MARK: - State
 
@@ -186,6 +193,19 @@
 
   function isPale(color) {
     return luminance(color.hex) > 0.8;
+  }
+
+  /**
+   * The ring's colour: the sphere's own, a little darker — a little lighter
+   * for a colour already near black, where darker would not show.
+   */
+  function ringColor(color, alpha) {
+    const channels = [1, 3, 5].map((i) => parseInt(color.hex.slice(i, i + 2), 16));
+    const isNearBlack = luminance(color.hex) < 0.02;
+    const mixed = channels.map((c) => Math.round(
+      isNearBlack ? c + (255 - c) * LIFT_RING_SHADE : c * (1 - LIFT_RING_SHADE)
+    ));
+    return `rgba(${mixed.join(", ")}, ${alpha})`;
   }
 
   function radius() {
@@ -417,16 +437,22 @@
     };
   }
 
+  function focusPoint() {
+    return { x: width / 2, y: height / 2 + FOCUS_OFFSET_Y };
+  }
+
   function moveFocused(node, f, time) {
     if (node.settle) {
       const progress = Math.min((time - node.settle.start) / FOCUS_SETTLE_MS, 1);
-      node.x = node.settle.fromX + (width / 2 - node.settle.fromX) * progress;
-      node.y = node.settle.fromY + (height / 2 - node.settle.fromY) * progress;
+      const target = focusPoint();
+      node.x = node.settle.fromX + (target.x - node.settle.fromX) * progress;
+      node.y = node.settle.fromY + (target.y - node.settle.fromY) * progress;
       return;
     }
 
-    const dx = width / 2 - node.x;
-    const dy = height / 2 - node.y;
+    const target = focusPoint();
+    const dx = target.x - node.x;
+    const dy = target.y - node.y;
     const distance = Math.hypot(dx, dy);
     if (distance < FOCUS_ARRIVAL) {
       // Arrived: static from here, settled on the middle in 0.2 s.
@@ -455,7 +481,8 @@
 
       if (node === focusedNode) {
         // Pushed off the middle by a drag, it heads back as SpriteKit's does.
-        if (node.isStatic && Math.hypot(node.x - width / 2, node.y - height / 2) > FOCUS_ARRIVAL * 2) {
+        const target = focusPoint();
+        if (node.isStatic && Math.hypot(node.x - target.x, node.y - target.y) > FOCUS_ARRIVAL * 2) {
           node.isStatic = false;
           node.settle = null;
           node.liftStart = null;
@@ -578,11 +605,10 @@
     }
     if (lift > 0) {
       context.beginPath();
-      context.arc(x, y, r + LIFT_RING_GAP, 0, Math.PI * 2);
+      // On the sphere's edge, inside it: a darker shade of its own colour.
+      context.arc(x, y, r - LIFT_RING_WIDTH / 2, 0, Math.PI * 2);
       context.lineWidth = LIFT_RING_WIDTH;
-      context.strokeStyle = isPale(color)
-        ? `rgba(0, 0, 0, ${0.22 * lift})`
-        : `rgba(255, 255, 255, ${0.7 * lift})`;
+      context.strokeStyle = ringColor(color, lift);
       context.stroke();
     }
     if (isPale(color)) {
